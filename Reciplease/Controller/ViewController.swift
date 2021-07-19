@@ -12,8 +12,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        print("ViewController ~> viewDidLoad")
+        EdamanService.shared.getRecipe(from: ["lol"]) { error, data in
+            if let error = error {
+                print(error)
+            }
+            if let data = data {
+                print(data)
+            }
+        }
     }
-
-
 }
 
