@@ -43,6 +43,7 @@ class RecipeModel {
                 completion(.undefined, nil)
                 return
             }
+
             guard recipeData.count > 0 else {
                 completion(.noRecipeData, nil)
                 return

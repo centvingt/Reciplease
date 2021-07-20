@@ -20,7 +20,6 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,8 +37,22 @@ class SearchViewController: UIViewController {
         setButtonsVisibility()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "SegueToSearchResult" else { return }
+        let viewController = segue.destination as! RecipeTableViewController
+        
+        guard let recipes = recipes else {
+            present(
+                RecipeAlert.getAlert(for: .noRecipeData),
+                animated: true
+            )
+            return
+        }
+        
+        viewController.recipes = recipes
+    }
+    
     private func addIngredient() {
-        print("addIngredient")
         guard let ingredient = inputTextField.text?.trimmingCharacters(in: .whitespaces),
               !ingredient.isEmpty else { return }
         
@@ -84,6 +97,8 @@ class SearchViewController: UIViewController {
             }
             
             self.recipes = recipes
+            
+            self.performSegue(withIdentifier: "SegueToSearchResult", sender: nil)
         }
     }
     

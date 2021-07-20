@@ -22,4 +22,5 @@ struct Recipe: Decodable {
     let url: String
     let ingredientLines: [String]
     let totalTime: Float
+    let calories: Double
 }

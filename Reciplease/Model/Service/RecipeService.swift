@@ -25,9 +25,11 @@ class RecipeService: RecipeServiceProtocol {
             completion(.undefined, nil)
             return
         }
+
+        let url = "\(self.apiURL)&q=\(q)"
         
         DispatchQueue.main.async {
-            AF.request("\(self.apiURL)&\(q)")
+            AF.request(url)
                 .validate()
                 .responseDecodable(of: RecipeData.self) { response in
                     switch response.result {

@@ -1,5 +1,5 @@
 //
-//  RecipesTableViewController.swift
+//  RecipeTableViewController.swift
 //  Reciplease
 //
 //  Created by Vincent Caronnet on 18/07/2021.
@@ -7,8 +7,9 @@
 
 import UIKit
 
-class RecipesTableViewController: UITableViewController {
-    let recipes = [RecipeData.Hit.Recipe]()
+class RecipeTableViewController: UITableViewController {
+    var recipes = [Recipe]()
+    var selectedRecipe: Recipe?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +39,27 @@ class RecipesTableViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        cell.title = recipes[indexPath.row].label
+        let recipe = recipes[indexPath.row]
+        
+        cell.title = recipe.label
+        cell.calories = recipe.calories
+        cell.imageURL = recipe.image
+        cell.totalTime = recipe.totalTime
+        
+        cell.configure()
         
         return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return tableView.frame.width * 0.5
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedRecipe = recipes[indexPath.row]
+        performSegue(withIdentifier: "SegueToRecipeDetail", sender: nil)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -79,14 +95,20 @@ class RecipesTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        guard segue.identifier == "SegueToRecipeDetail" else { return }
+        let viewController = segue.destination as! RecipeDetailViewController
+        
+        guard let selectedRecipe = selectedRecipe else {
+            return
+        }
+        
+        viewController.recipe = selectedRecipe
     }
-    */
-
 }
