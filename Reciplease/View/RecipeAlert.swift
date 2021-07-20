@@ -11,6 +11,7 @@ import UIKit
 enum RecipeError {
     case internetConnection,
          noRecipeData,
+         webView,
          undefined
 }
 
@@ -26,6 +27,9 @@ class RecipeAlert {
         case .noRecipeData:
             title = "No recipes"
             message = "No recipes were found with your ingredients."
+        case .webView:
+            title = "Website error"
+            message = "The website encountered an error."
         case .undefined:
             title = "Undefined error"
             message = "An indeterminate error has occurred."

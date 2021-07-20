@@ -13,18 +13,26 @@ class DirectionsViewController: UIViewController, WKUIDelegate {
     
     var webView: WKWebView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var container: UIView!
     
     override func loadView() {
+        super.loadView()
+        
         let webConfiguration = WKWebViewConfiguration()
         webView = WKWebView(frame: .zero, configuration: webConfiguration)
         webView.uiDelegate = self
-        view = webView
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        webView.navigationDelegate = self
         
-        // Do any additional setup after loading the view.
+        container.addSubview(webView)
+        
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 0).isActive = true
+        webView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: 0).isActive = true
+        webView.topAnchor.constraint(equalTo: container.topAnchor, constant: 0).isActive = true
+        webView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: 0).isActive = true
+        
+        container.layer.opacity = 0
+        
         guard
             let recipeURL = recipeURL,
             let url = URL(string: recipeURL)
@@ -33,36 +41,20 @@ class DirectionsViewController: UIViewController, WKUIDelegate {
         let request = URLRequest(url: url)
         webView.load(request)
         
-        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.isLoading), options: .new, context: nil)
-
     }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-            if keyPath == "loading" {
-                if webView.isLoading {
-//                    activityIndicator.startAnimating()
-//                    activityIndicator.isHidden = false
-                    print("DirectionsViewController ~> webView.isLoading")
-                } else {
-//                    activityIndicator.stopAnimating()
-                    print("DirectionsViewController ~> !webView.isLoading ~> keyPath ~>", keyPath)
-                }
-            }
-        }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
-//extension DirectionsViewController: WKNavigationDelegate {
-//    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-//        print("DirectionsViewController ~> didFinish")
-//    }
-//}
+extension DirectionsViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        UIView.animate(withDuration: 1, delay: 0.5, usingSpringWithDamping: 0.6, initialSpringVelocity: 4, options: []) {
+            self.activityIndicator.stopAnimating()
+            self.container.layer.opacity = 1
+        }
+    }
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        present(
+            RecipeAlert.getAlert(for: .noRecipeData),
+            animated: true
+        )
+    }
+}

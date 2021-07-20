@@ -542,14 +542,35 @@
                     <view key="view" contentMode="scaleToFill" id="D5X-H3-33A">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qk8-vc-uGT">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Oyh-qe-JIx">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Pvk-a2-cWR"/>
                         <color key="backgroundColor" name="AccentGreen"/>
+                        <constraints>
+                            <constraint firstItem="Qk8-vc-uGT" firstAttribute="leading" secondItem="Pvk-a2-cWR" secondAttribute="leading" id="87w-iE-B9O"/>
+                            <constraint firstItem="Oyh-qe-JIx" firstAttribute="centerX" secondItem="D5X-H3-33A" secondAttribute="centerX" id="JKU-Ut-0Pj"/>
+                            <constraint firstItem="Pvk-a2-cWR" firstAttribute="bottom" secondItem="Qk8-vc-uGT" secondAttribute="bottom" id="LLz-HE-l1d"/>
+                            <constraint firstItem="Qk8-vc-uGT" firstAttribute="top" secondItem="Pvk-a2-cWR" secondAttribute="top" id="MtC-bO-leG"/>
+                            <constraint firstItem="Pvk-a2-cWR" firstAttribute="trailing" secondItem="Qk8-vc-uGT" secondAttribute="trailing" id="VWp-4U-xFt"/>
+                            <constraint firstItem="Oyh-qe-JIx" firstAttribute="centerY" secondItem="D5X-H3-33A" secondAttribute="centerY" id="a5F-4Y-b0h"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JLp-Ma-nB1"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="Oyh-qe-JIx" id="NLC-j2-D9V"/>
+                        <outlet property="container" destination="Qk8-vc-uGT" id="bO9-Zw-njB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6o7-eV-g6F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2828" y="289"/>
+            <point key="canvasLocation" x="2827.536231884058" y="288.61607142857139"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
