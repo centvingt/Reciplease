@@ -520,9 +520,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="S3r-Wq-Gr8">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="star" catalog="system" id="4qY-uW-XWV"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="star" catalog="system" id="4qY-uW-XWV">
+                            <connections>
+                                <action selector="favoriteButtonDidPressed:" destination="Bi7-No-H2A" id="TSC-1E-iab"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="favoriteButton" destination="4qY-uW-XWV" id="qQt-s9-vd8"/>
                         <outlet property="getDirectionsButton" destination="OyA-7l-GPK" id="aId-YY-g3c"/>
                         <outlet property="recipeImageView" destination="0HQ-vB-7Wt" id="kEZ-rl-Fz0"/>
                         <outlet property="tableView" destination="1PP-oW-nU8" id="6EK-Pe-Aui"/>

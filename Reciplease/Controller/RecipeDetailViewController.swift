@@ -9,12 +9,14 @@ import UIKit
 
 class RecipeDetailViewController: UIViewController {
     var recipe: Recipe?
+    let recipeModel = RecipeModel()
     
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var totalTimeLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var getDirectionsButton: UIButton!
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,8 @@ class RecipeDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
         tableView.backgroundColor = UIColor.recipeDarkGrey
         ViewHelpers.setRoundedCornersOf(view: getDirectionsButton)
+        
+        setFavoriteButtonIcon()
         
         guard let recipe = recipe else {
             return
@@ -35,6 +39,19 @@ class RecipeDetailViewController: UIViewController {
         performSegue(withIdentifier: "SegueToDirections", sender: nil)
     }
     
+    @IBAction func favoriteButtonDidPressed(_ sender: Any) {
+        guard let recipe = recipe else { return }
+        recipeModel.setFavorite(for: recipe)
+        
+        setFavoriteButtonIcon()
+    }
+    
+    private func setFavoriteButtonIcon() {
+        guard let recipe = recipe else { return }
+        favoriteButton.image = recipeModel.recipeIsFavorite(recipe)
+            ? UIImage(systemName: "star.fill")
+            : UIImage(systemName: "star")
+    }
     
     // MARK: - Navigation
 

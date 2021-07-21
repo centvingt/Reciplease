@@ -11,15 +11,14 @@ class RecipeModel {
     // MARK: - Dependency injection
     
     private let recipeService: RecipeServiceProtocol
-//    private let coreDataStorage: CoreDataStorageProtocol
+    private let coreDataStorage: CoreDataStorageProtocol
 
     init(
-        recipeService: RecipeServiceProtocol = RecipeService.shared
-//        ,
-//        coreDataStorage: CoreDataStorageProtocol = CoreDataStorage()
+        recipeService: RecipeServiceProtocol = RecipeService.shared,
+        coreDataStorage: CoreDataStorageProtocol = CoreDataStorage()
     ) {
         self.recipeService = recipeService
-//        self.coreDataStorage = coreDataStorage
+        self.coreDataStorage = coreDataStorage
     }
     
     // MARK: - Service request
@@ -56,5 +55,21 @@ class RecipeModel {
                 recipeData.hits.map({ $0.recipe })
             )
         }
+    }
+    
+    func setFavorite(for recipe: Recipe) {
+        if recipeIsFavorite(recipe) {
+            coreDataStorage.deleteRecipe(recipe)
+
+        } else {
+            coreDataStorage.saveRecipe(recipe)
+        }
+    }
+    
+    func recipeIsFavorite(_ recipe: Recipe) -> Bool {
+        guard let _ = coreDataStorage.getRecipe(with: recipe.url) else {
+            return false
+        }
+        return true
     }
 }
