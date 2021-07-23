@@ -28,7 +28,7 @@ class SearchViewController: UIViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        tableView.backgroundColor = UIColor.recipeDarkGrey
+        tableView.backgroundColor = UIColor.recipeDarkGray
         
         ViewHelpers.setRoundedCornersOf(view: addButton)
         ViewHelpers.setRoundedCornersOf(view: clearButton)
@@ -49,6 +49,7 @@ class SearchViewController: UIViewController {
             return
         }
         
+        viewController.screen = .searchResult
         viewController.recipes = recipes
     }
     

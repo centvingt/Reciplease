@@ -22,7 +22,7 @@ class RecipeDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        tableView.backgroundColor = UIColor.recipeDarkGrey
+        tableView.backgroundColor = UIColor.recipeDarkGray
         ViewHelpers.setRoundedCornersOf(view: getDirectionsButton)
         
         setFavoriteButtonIcon()

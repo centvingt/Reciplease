@@ -238,6 +238,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="sectionIndexBackgroundColor" name="DarkGray"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" rowHeight="186" id="4fQ-fT-Mgv" customClass="RecipeViewCell" customModule="Reciplease" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="24.5" width="414" height="186"/>
@@ -276,7 +277,7 @@
                                                 <constraint firstAttribute="height" constant="30" id="cxO-91-hrL"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                            <color key="textColor" name="AccentGreen"/>
+                                            <color key="textColor" name="DarkGray"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bKW-gr-qJD">
@@ -348,6 +349,39 @@
                                     <outlet property="titleLabel" destination="Lf1-fq-t84" id="JdX-UC-BSE"/>
                                     <outlet property="totalTimeLabel" destination="9nT-5i-PHg" id="8QU-d7-nND"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InstructionsCell" id="0wS-JS-raD">
+                                <rect key="frame" x="0.0" y="210.5" width="414" height="85"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0wS-JS-raD" id="47T-OS-FRo">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="85"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find here the recipes that you add to your favorites. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XK0-8U-oOT">
+                                            <rect key="frame" x="20" y="11" width="374" height="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" name="LightGray"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can add a recipe to your favorites from the detail of a recipe in the search section." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hb3-rq-pX7">
+                                            <rect key="frame" x="20" y="38" width="374" height="36"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" name="LightGray"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" name="DarkGray"/>
+                                    <constraints>
+                                        <constraint firstItem="Hb3-rq-pX7" firstAttribute="leading" secondItem="47T-OS-FRo" secondAttribute="leadingMargin" id="1Zn-yD-AkH"/>
+                                        <constraint firstItem="XK0-8U-oOT" firstAttribute="trailing" secondItem="47T-OS-FRo" secondAttribute="trailingMargin" id="4TR-og-xSA"/>
+                                        <constraint firstItem="Hb3-rq-pX7" firstAttribute="bottom" secondItem="47T-OS-FRo" secondAttribute="bottomMargin" id="MnZ-fc-Ygs"/>
+                                        <constraint firstItem="Hb3-rq-pX7" firstAttribute="trailing" secondItem="47T-OS-FRo" secondAttribute="trailingMargin" id="RRp-3m-cPC"/>
+                                        <constraint firstItem="XK0-8U-oOT" firstAttribute="leading" secondItem="47T-OS-FRo" secondAttribute="leadingMargin" id="asg-lt-FXl"/>
+                                        <constraint firstItem="XK0-8U-oOT" firstAttribute="top" secondItem="47T-OS-FRo" secondAttribute="topMargin" id="jhp-vW-aW2"/>
+                                        <constraint firstItem="Hb3-rq-pX7" firstAttribute="top" secondItem="XK0-8U-oOT" secondAttribute="bottom" constant="10" id="vnk-xQ-qth"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" name="DarkGray"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -483,7 +517,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Hx-0M-h45">
                                             <rect key="frame" x="8" y="14.5" width="398" height="37"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
-                                            <color key="textColor" name="AccentGreen"/>
+                                            <color key="textColor" name="DarkGray"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -579,7 +613,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vL3-Tg-2aQ"/>
+        <segue reference="e6d-Od-U9m"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="AccentGreen"/>
     <resources>

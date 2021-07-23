@@ -104,6 +104,8 @@ class CoreDataStorage: CoreDataStorageProtocol {
         }
         
         context.delete(cdRecipe)
+        
+        saveContext()
     }
     
     private func getCDRecipe(with url: String) -> CDRecipe? {

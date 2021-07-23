@@ -8,10 +8,10 @@
 import UIKit
 
 extension UIColor {
-    public class var recipeDarkGrey: UIColor {
+    public class var recipeDarkGray: UIColor {
         return UIColor(named: "DarkGray")!
     }
-    public class var recipeLightGrey: UIColor {
+    public class var recipeLightGray: UIColor {
         return UIColor(named: "LightkGray")!
     }
     public class var recipeAccentGreen: UIColor {

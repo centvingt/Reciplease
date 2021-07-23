@@ -60,7 +60,6 @@ class RecipeModel {
     func setFavorite(for recipe: Recipe) {
         if recipeIsFavorite(recipe) {
             coreDataStorage.deleteRecipe(recipe)
-
         } else {
             coreDataStorage.saveRecipe(recipe)
         }
@@ -71,5 +70,12 @@ class RecipeModel {
             return false
         }
         return true
+    }
+    
+    func getFavorites() -> [Recipe]? {
+        guard let recipes = coreDataStorage.getAllRecipes() else {
+            return nil
+        }
+        return recipes
     }
 }

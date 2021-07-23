@@ -10,19 +10,33 @@ import UIKit
 class RecipeTableViewController: UITableViewController {
     var recipes = [Recipe]()
     var selectedRecipe: Recipe?
+    
+    var recipeModel = RecipeModel()
+    
+    var screen = Screen.favorites
+    enum Screen {
+        case favorites, searchResult
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.backgroundColor = UIColor.recipeDarkGray
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if screen == .favorites {
+            guard let recipes = recipeModel.getFavorites() else {
+                self.recipes = []
+                tableView.reloadData()
+                return
+            }
+            self.recipes = recipes
+        }
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -30,11 +44,21 @@ class RecipeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if screen == .favorites && recipes.isEmpty {
+            return 1
+        }
         return recipes.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if screen == .favorites && recipes.isEmpty {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "InstructionsCell") else {
+                return UITableViewCell()
+            }
+            return cell
+        }
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell") as? RecipeViewCell else {
             return UITableViewCell()
         }
@@ -52,6 +76,9 @@ class RecipeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if screen == .favorites && recipes.isEmpty {
+            return UITableView.automaticDimension
+        }
         return tableView.frame.width * 0.5
     }
     
