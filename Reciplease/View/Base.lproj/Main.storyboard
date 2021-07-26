@@ -97,9 +97,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2pH-5L-8bI">
-                                                    <rect key="frame" x="20" y="11.5" width="20.5" height="18.5"/>
+                                                    <rect key="frame" x="21" y="13.5" width="18.5" height="16.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <imageReference key="image" image="square.and.pencil" catalog="system" symbolScale="medium"/>
+                                                    <imageReference key="image" image="checkmark" catalog="system" symbolScale="medium"/>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -143,6 +143,34 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5P4-Yu-8Uz">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Bgy-MO-U37">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uE8-0S-3dj">
+                                            <rect key="frame" x="0.0" y="0.0" width="174" height="597"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="9ER-Ay-aMO">
+                                                <rect key="frame" x="0.0" y="0.0" width="174" height="597"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            </view>
+                                            <vibrancyEffect>
+                                                <blurEffect style="regular"/>
+                                            </vibrancyEffect>
+                                        </visualEffectView>
+                                        <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="c4r-51-ulR">
+                                            <rect key="frame" x="188.5" y="344" width="37" height="37"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="c4r-51-ulR" firstAttribute="centerX" secondItem="Bgy-MO-U37" secondAttribute="centerX" id="252-dG-lMR"/>
+                                        <constraint firstItem="c4r-51-ulR" firstAttribute="centerY" secondItem="Bgy-MO-U37" secondAttribute="centerY" id="Gxr-Ep-fc8"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="regular"/>
+                            </visualEffectView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4Gl-6s-Cch"/>
                         <color key="backgroundColor" name="DarkGray"/>
@@ -153,13 +181,17 @@
                             <constraint firstItem="uvc-ZN-FtU" firstAttribute="leading" secondItem="4Gl-6s-Cch" secondAttribute="leading" constant="20" id="7Jz-jt-Zpx"/>
                             <constraint firstItem="msI-Nc-ON8" firstAttribute="top" secondItem="hhM-qB-6nS" secondAttribute="bottom" constant="20" id="Eq1-nh-4El"/>
                             <constraint firstItem="hhM-qB-6nS" firstAttribute="leading" secondItem="4Gl-6s-Cch" secondAttribute="leading" id="FbZ-wD-YQu"/>
+                            <constraint firstItem="5P4-Yu-8Uz" firstAttribute="bottom" secondItem="4Gl-6s-Cch" secondAttribute="bottom" id="KaI-OE-sYe"/>
+                            <constraint firstItem="5P4-Yu-8Uz" firstAttribute="trailing" secondItem="4Gl-6s-Cch" secondAttribute="trailing" id="O8R-oc-fsp"/>
                             <constraint firstItem="4Gl-6s-Cch" firstAttribute="bottom" secondItem="msI-Nc-ON8" secondAttribute="bottom" constant="20" id="Q1s-3T-QdS"/>
                             <constraint firstItem="4Gl-6s-Cch" firstAttribute="trailing" secondItem="1w8-vc-rT1" secondAttribute="trailing" constant="20" id="SPN-dM-vxX"/>
                             <constraint firstItem="hhM-qB-6nS" firstAttribute="top" secondItem="uvc-ZN-FtU" secondAttribute="bottom" id="dSH-wR-wMi"/>
                             <constraint firstItem="1w8-vc-rT1" firstAttribute="leading" secondItem="4Gl-6s-Cch" secondAttribute="leading" constant="20" id="fvs-0d-f3O"/>
                             <constraint firstItem="4Gl-6s-Cch" firstAttribute="trailing" secondItem="hhM-qB-6nS" secondAttribute="trailing" id="fyS-ay-pNO"/>
                             <constraint firstItem="msI-Nc-ON8" firstAttribute="leading" secondItem="4Gl-6s-Cch" secondAttribute="leading" constant="20" id="mjR-lu-YQN"/>
+                            <constraint firstItem="5P4-Yu-8Uz" firstAttribute="top" secondItem="4Gl-6s-Cch" secondAttribute="top" id="rGj-4O-84y"/>
                             <constraint firstItem="uvc-ZN-FtU" firstAttribute="top" secondItem="1w8-vc-rT1" secondAttribute="bottom" constant="20" id="tIK-B5-4WG"/>
+                            <constraint firstItem="5P4-Yu-8Uz" firstAttribute="leading" secondItem="4Gl-6s-Cch" secondAttribute="leading" id="xe3-aO-XgJ"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="FYG-DE-WpL" appends="YES" id="jzQ-3u-K6P"/>
@@ -171,6 +203,7 @@
                         <outlet property="buttonsStackView" destination="msI-Nc-ON8" id="k91-ZM-O2q"/>
                         <outlet property="clearButton" destination="kGe-ew-6eg" id="OIr-Tj-h4F"/>
                         <outlet property="inputTextField" destination="MFC-HQ-9A8" id="sCa-vW-xBe"/>
+                        <outlet property="loaderContainer" destination="5P4-Yu-8Uz" id="FBk-yg-cij"/>
                         <outlet property="searchButton" destination="mRD-d8-8lV" id="3Dm-o1-uPB"/>
                         <outlet property="tableView" destination="hhM-qB-6nS" id="CEG-4J-9v1"/>
                         <segue destination="ydh-ce-hba" kind="show" identifier="SegueToSearchResult" id="e6d-Od-U9m"/>
@@ -183,7 +216,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1196" y="-411"/>
+            <point key="canvasLocation" x="1195.6521739130435" y="-411.16071428571428"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="8Me-Df-4Rd">
@@ -467,9 +500,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gZP-mc-IA8">
-                                                    <rect key="frame" x="20" y="11.5" width="20.5" height="18.5"/>
+                                                    <rect key="frame" x="21" y="13.5" width="18.5" height="16.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <imageReference key="image" image="square.and.pencil" catalog="system" symbolScale="medium"/>
+                                                    <imageReference key="image" image="checkmark" catalog="system" symbolScale="medium"/>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -554,7 +587,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="S3r-Wq-Gr8">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="star" catalog="system" id="4qY-uW-XWV">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="bookmark" catalog="system" id="4qY-uW-XWV">
                             <connections>
                                 <action selector="favoriteButtonDidPressed:" destination="Bi7-No-H2A" id="TSC-1E-iab"/>
                             </connections>
@@ -591,7 +624,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Pvk-a2-cWR"/>
-                        <color key="backgroundColor" name="AccentGreen"/>
+                        <color key="backgroundColor" name="LightGray"/>
                         <constraints>
                             <constraint firstItem="Qk8-vc-uGT" firstAttribute="leading" secondItem="Pvk-a2-cWR" secondAttribute="leading" id="87w-iE-B9O"/>
                             <constraint firstItem="Oyh-qe-JIx" firstAttribute="centerX" secondItem="D5X-H3-33A" secondAttribute="centerX" id="JKU-Ut-0Pj"/>
@@ -613,12 +646,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="e6d-Od-U9m"/>
+        <segue reference="vL3-Tg-2aQ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" name="AccentGreen"/>
     <resources>
+        <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
-        <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="AccentGreen">
             <color red="0.25882352941176473" green="0.58431372549019611" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -49,8 +49,8 @@ class RecipeDetailViewController: UIViewController {
     private func setFavoriteButtonIcon() {
         guard let recipe = recipe else { return }
         favoriteButton.image = recipeModel.recipeIsFavorite(recipe)
-            ? UIImage(systemName: "star.fill")
-            : UIImage(systemName: "star")
+            ? UIImage(systemName: "bookmark.fill")
+            : UIImage(systemName: "bookmark")
     }
     
     // MARK: - Navigation

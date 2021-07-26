@@ -12,16 +12,28 @@ class RecipeService: RecipeServiceProtocol {
     static let shared = RecipeService()
     private init() { }
     
+    private var session: Session = AF
     private var apiURL: String = "https://api.edamam.com/api/recipes/v2?app_id=21ff0084&app_key=695a6b93bca9422faafe734d310a0b99&type=public"
     
-    func getRecipe(
+    init(
+        session: Session = AF,
+        apiURL: String
+    ) {
+        self.session = session
+        self.apiURL = apiURL
+    }
+    
+    func getRecipes(
         from ingredients: [String],
         completion: @escaping (RecipeError?, RecipeData?) -> ()
     ) {
         guard let q = ingredients
                 .joined(separator: ",")
                 .lowercased()
-                .addingPercentEncoding(withAllowedCharacters: .letters) else {
+                .addingPercentEncoding(
+                    withAllowedCharacters: .letters
+                )
+        else {
             completion(.undefined, nil)
             return
         }
@@ -29,16 +41,22 @@ class RecipeService: RecipeServiceProtocol {
         let url = "\(self.apiURL)&q=\(q)"
         
         DispatchQueue.main.async {
-            AF.request(url)
+            self.session.request(url)
                 .validate()
                 .responseDecodable(of: RecipeData.self) { response in
                     switch response.result {
                     case .success(let value):
                         completion(nil, value)
                     case let .failure(error):
-                        // TODO: Intercepter l’erreur de l’absence de connexion internet
                         print("RecipeService ~> getRecipe ~> error ~>", error)
-                        completion(.undefined, nil)
+                        guard let underlyingError = error.underlyingError,
+                              let urlError = underlyingError as? URLError,
+                              urlError.code == .notConnectedToInternet
+                        else {
+                            completion(.undefined, nil)
+                            return
+                        }
+                        completion(.internetConnection, nil)
                     }
                 }
         }
@@ -46,7 +64,7 @@ class RecipeService: RecipeServiceProtocol {
 }
 
 protocol RecipeServiceProtocol {
-    func getRecipe(
+    func getRecipes(
         from ingredients: [String],
         completion: @escaping (RecipeError?, RecipeData?) -> ()
     )

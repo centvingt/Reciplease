@@ -27,15 +27,11 @@ class RecipeModel {
         for ingredients: [String],
         completion: @escaping (RecipeError?, [Recipe]?) -> ()
     ) {
-        recipeService.getRecipe(from: ingredients) { recipeError, recipeData in
+        recipeService.getRecipes(from: ingredients) { recipeError, recipeData in
             // MARK: Errors handling
             
             if let recipeError = recipeError {
-                if recipeError == .internetConnection {
-                    completion(.internetConnection, nil)
-                } else {
-                    completion(.undefined, nil)
-                }
+                completion(recipeError, nil)
                 return
             }
             guard let recipeData = recipeData else {

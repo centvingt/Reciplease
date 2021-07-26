@@ -19,15 +19,11 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var buttonsStackView: UIStackView!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var loaderContainer: UIVisualEffectView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         tableView.backgroundColor = UIColor.recipeDarkGray
         
         ViewHelpers.setRoundedCornersOf(view: addButton)
@@ -35,6 +31,8 @@ class SearchViewController: UIViewController {
         ViewHelpers.setRoundedCornersOf(view: searchButton)
         
         setButtonsVisibility()
+        
+        loaderContainer.isHidden = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -81,12 +79,16 @@ class SearchViewController: UIViewController {
         tableView.reloadData()
     }
     @IBAction func searchButtonDidPressed(_ sender: UIButton) {
+        loaderContainer.isHidden = false
+        
         recipeModel.getRecipes(for: ingredients) { recipeError, recipes in
             if let recipeError = recipeError {
                 self.present(
                     RecipeAlert.getAlert(for: recipeError),
                     animated: true
                 )
+                self.loaderContainer.isHidden = true
+                return
             }
             
             guard let recipes = recipes else {
@@ -98,6 +100,8 @@ class SearchViewController: UIViewController {
             }
             
             self.recipes = recipes
+            
+            self.loaderContainer.isHidden = true
             
             self.performSegue(withIdentifier: "SegueToSearchResult", sender: nil)
         }

@@ -7,16 +7,24 @@
 
 import Foundation
 
-struct RecipeData: Decodable {
+struct RecipeData: Decodable, Equatable {
+    static func == (lhs: RecipeData, rhs: RecipeData) -> Bool {
+        return lhs.count == rhs.count
+            && lhs.hits == lhs.hits
+    }
+    
     let count: Int64
     let hits: [Hit]
     
-    struct Hit: Decodable {
+    struct Hit: Decodable, Equatable {
+        static func == (lhs: Hit, rhs: Hit) -> Bool {
+            return lhs.recipe == rhs.recipe
+        }
         let recipe: Recipe
     }
 }
 
-struct Recipe: Decodable {
+struct Recipe: Decodable, Equatable {
     let label: String
     let image: String
     let url: String
