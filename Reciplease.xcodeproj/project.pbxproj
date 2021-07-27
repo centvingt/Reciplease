@@ -126,6 +126,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		2F12EFFA26AF56590036C007 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2F13842926A360A600D2280E /* RecipeData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		2F1383E226A3539100D2280E = {
 			isa = PBXGroup;
 			children = (
@@ -160,9 +168,9 @@
 		2F13840726A3539500D2280E /* RecipleaseTests */ = {
 			isa = PBXGroup;
 			children = (
+				2F5CC64E26AD9D3D0054704A /* RecipeModelTestCase.swift */,
 				2F5CC64126AB45100054704A /* RecipeServiceTestCase.swift */,
 				2F5CC64826AD86B20054704A /* CoreDataStorageTestCase.swift */,
-				2F5CC64E26AD9D3D0054704A /* RecipeModelTestCase.swift */,
 				2F13840A26A3539500D2280E /* Info.plist */,
 				2F5CC64726AD85FD0054704A /* Mocks */,
 			);
@@ -208,10 +216,10 @@
 		2F13842426A3565600D2280E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2F44CFCF26A5669F002823BA /* RecipeModel.swift */,
+				2F12EFFA26AF56590036C007 /* Data */,
 				2F13842626A3569D00D2280E /* Service */,
 				2F13842526A3567600D2280E /* CoreData */,
-				2F13842926A360A600D2280E /* RecipeData.swift */,
-				2F44CFCF26A5669F002823BA /* RecipeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

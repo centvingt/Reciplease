@@ -80,4 +80,14 @@ class CoreDataStorageTestCase: XCTestCase {
         let query = sut.getRecipe(with: recipe1.url)
         XCTAssertNil(query)
     }
+    
+    func testGivenNoRecipeSaved_WhenGetRecipes_ThenGetAllRecipesReturnNil() {
+        // Given
+        
+        // When
+        let query = sut.getAllRecipes()
+        
+        // Then
+        XCTAssertNil(query)
+    }
 }

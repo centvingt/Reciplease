@@ -36,6 +36,7 @@ class RecipeServiceTestCase: XCTestCase {
                 data: MockResponseData.correctData
             )
         }
+        
         // When
         sut.getRecipes(from: ["chicken"]) { recipeError, recipeData in
             // Then

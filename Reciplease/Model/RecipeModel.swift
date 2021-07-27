@@ -34,11 +34,12 @@ class RecipeModel {
                 completion(recipeError, nil)
                 return
             }
+            
             guard let recipeData = recipeData else {
                 completion(.undefined, nil)
                 return
             }
-
+            
             guard recipeData.count > 0 else {
                 completion(.noRecipeData, nil)
                 return
@@ -52,6 +53,8 @@ class RecipeModel {
             )
         }
     }
+    
+    // MARK: - Favorites handling
     
     func setFavorite(for recipe: Recipe) {
         if recipeIsFavorite(recipe) {

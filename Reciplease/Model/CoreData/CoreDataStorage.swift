@@ -60,7 +60,7 @@ class CoreDataStorage: CoreDataStorageProtocol {
             return
         }
         
-//        cdRecipe = CDRecipe(context: context)
+        //        cdRecipe = CDRecipe(context: context)
         cdRecipe = NSEntityDescription.insertNewObject(forEntityName: "CDRecipe", into: context) as! CDRecipe
         
         cdRecipe.calories = recipe.calories
@@ -74,11 +74,11 @@ class CoreDataStorage: CoreDataStorageProtocol {
     }
     
     func getAllRecipes() -> [Recipe]? {
-            let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
-            guard
-                let cdRecipes = try? context.fetch(request),
-                !cdRecipes.isEmpty
-            else { return nil }
+        let request: NSFetchRequest<CDRecipe> = CDRecipe.fetchRequest()
+        guard
+            let cdRecipes = try? context.fetch(request),
+            !cdRecipes.isEmpty
+        else { return nil }
         return cdRecipes.compactMap { cdRecipe in
             guard let recipe = Recipe(from: cdRecipe) else { return nil }
             return recipe

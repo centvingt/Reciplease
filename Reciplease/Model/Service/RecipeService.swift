@@ -8,6 +8,13 @@
 import Foundation
 import Alamofire
 
+protocol RecipeServiceProtocol {
+    func getRecipes(
+        from ingredients: [String],
+        completion: @escaping (RecipeError?, RecipeData?) -> ()
+    )
+}
+
 class RecipeService: RecipeServiceProtocol {
     static let shared = RecipeService()
     private init() { }
@@ -37,7 +44,7 @@ class RecipeService: RecipeServiceProtocol {
             completion(.undefined, nil)
             return
         }
-
+        
         let url = "\(self.apiURL)&q=\(q)"
         
         DispatchQueue.main.async {
@@ -63,9 +70,3 @@ class RecipeService: RecipeServiceProtocol {
     }
 }
 
-protocol RecipeServiceProtocol {
-    func getRecipes(
-        from ingredients: [String],
-        completion: @escaping (RecipeError?, RecipeData?) -> ()
-    )
-}
