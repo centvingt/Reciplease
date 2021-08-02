@@ -38,19 +38,19 @@ class MockResponseData {
         httpVersion: nil,
         headerFields: [:]
     )!
-
+    
     // MARK: - Simulate error
     class FakeResponseDataError: Error {}
     static let error = FakeResponseDataError()
     static let internetConnectionError = URLError(.notConnectedToInternet)
     static let undefinedError = URLError(.cannotFindHost)
-
+    
     // MARK: - Simulate data
     static var correctData: Data? {
         let bundle = Bundle(for: MockResponseData.self)
         let url = bundle.url(forResource: "EdamanData", withExtension: "json")!
         return try! Data(contentsOf: url)
     }
-
+    
     static let incorrectData = "incorrect data".data(using: .utf8)!
 }

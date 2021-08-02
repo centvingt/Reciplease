@@ -65,12 +65,7 @@ class RecipeTableViewController: UITableViewController {
         
         let recipe = recipes[indexPath.row]
         
-        cell.title = recipe.label
-        cell.calories = recipe.calories
-        cell.imageURL = recipe.image
-        cell.totalTime = recipe.totalTime
-        
-        cell.configure()
+        cell.recipe = recipe
         
         return cell
     }

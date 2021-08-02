@@ -18,16 +18,20 @@ class RecipeViewCell: UITableViewCell {
     var imageURL = "https://www.edamam.com/web-img/e42/e42f9119813e890af34c259785ae1cfb.jpg"
     var totalTime: Float = 120.0
     
+    var recipe: Recipe? {
+        didSet {
+            guard let recipe = recipe else { return }
+            
+            titleLabel.text = recipe.label
+            caloriesLabel.text = "\(Int(recipe.calories)) kcal"
+            ImageLoader.load(stringUrl: recipe.image, imageView: recipeImageView)
+            totalTimeLabel.text = "\(Int(recipe.totalTime)) min"
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         // Initialization code
-    }
-
-    func configure() {
-        titleLabel.text = title
-        caloriesLabel.text = "\(Int(calories)) kcal"
-        ImageLoader.load(stringUrl: imageURL, imageView: recipeImageView)
-        totalTimeLabel.text = "\(Int(totalTime)) min"
     }
 }

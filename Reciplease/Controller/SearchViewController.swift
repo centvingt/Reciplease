@@ -82,28 +82,30 @@ class SearchViewController: UIViewController {
         loaderContainer.isHidden = false
         
         recipeModel.getRecipes(for: ingredients) { recipeError, recipes in
-            if let recipeError = recipeError {
-                self.present(
-                    RecipeAlert.getAlert(for: recipeError),
-                    animated: true
-                )
+            DispatchQueue.main.async {
+                if let recipeError = recipeError {
+                    self.present(
+                        RecipeAlert.getAlert(for: recipeError),
+                        animated: true
+                    )
+                    self.loaderContainer.isHidden = true
+                    return
+                }
+                
+                guard let recipes = recipes else {
+                    self.present(
+                        RecipeAlert.getAlert(for: .noRecipeData),
+                        animated: true
+                    )
+                    return
+                }
+                
+                self.recipes = recipes
+                
                 self.loaderContainer.isHidden = true
-                return
+                
+                self.performSegue(withIdentifier: "SegueToSearchResult", sender: nil)
             }
-            
-            guard let recipes = recipes else {
-                self.present(
-                    RecipeAlert.getAlert(for: .noRecipeData),
-                    animated: true
-                )
-                return
-            }
-            
-            self.recipes = recipes
-            
-            self.loaderContainer.isHidden = true
-            
-            self.performSegue(withIdentifier: "SegueToSearchResult", sender: nil)
         }
     }
     

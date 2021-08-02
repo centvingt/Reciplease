@@ -47,26 +47,28 @@ class RecipeService: RecipeServiceProtocol {
         
         let url = "\(self.apiURL)&q=\(q)"
         
-        DispatchQueue.main.async {
-            self.session.request(url)
-                .validate()
-                .responseDecodable(of: RecipeData.self) { response in
-                    switch response.result {
-                    case .success(let value):
-                        completion(nil, value)
-                    case let .failure(error):
-                        print("RecipeService ~> getRecipe ~> error ~>", error)
-                        guard let underlyingError = error.underlyingError,
-                              let urlError = underlyingError as? URLError,
-                              urlError.code == .notConnectedToInternet
-                        else {
-                            completion(.undefined, nil)
-                            return
-                        }
-                        completion(.internetConnection, nil)
+        print("RecipeService ~> getRecipe ~> url ~>", url)
+        
+        self.session.request(url)
+            .validate()
+            .responseDecodable(of: RecipeData.self) { response in
+                print("RecipeService ~> getRecipe ~> response")
+                switch response.result {
+                case .success(let value):
+                    completion(nil, value)
+                case let .failure(error):
+                    print("RecipeService ~> getRecipe ~> error ~>", error)
+                    guard let underlyingError = error.underlyingError,
+                          let urlError = underlyingError as? URLError,
+                          urlError.code == .notConnectedToInternet
+                    else {
+                        print("RecipeService ~> getRecipe ~> error ~> .undefined")
+                        completion(.undefined, nil)
+                        return
                     }
+                    completion(.internetConnection, nil)
                 }
-        }
+            }
     }
 }
 
